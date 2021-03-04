@@ -19,7 +19,6 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "moment": "^2.29.1",
         "vue": "^2.6.12"
     }
 }
