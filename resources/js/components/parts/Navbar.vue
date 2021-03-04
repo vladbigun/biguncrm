@@ -1,5 +1,5 @@
 <template>
-
+<div>
 <div class="side-menu">
 	<div class="logo"><img src="/img/favicon.png"></div>
 	<ul class="nav">
@@ -10,5 +10,6 @@
 		<a href="/logout"><li><img class="icon" src="/img/exid.svg"></li></a>
 		<!-- <router-link tag="li" to="/setings"><img class="icon" src="/img/setings.svg"></router-link> -->
 	</ul>
+</div>
 </div>
 </template>

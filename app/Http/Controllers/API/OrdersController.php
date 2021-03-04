@@ -27,6 +27,17 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
+         $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+            'phone_number' => 'required|min:12|max:12',
+            'sum_price' => 'required',
+            'sum_purchase_price' => 'required',
+            'product' => 'required'
+
+        ]);
+
+
         $test = $request->get('product');
         $order = new Orders();
         $order->surname = $request->get('surname');
@@ -37,12 +48,12 @@ class OrdersController extends Controller
         $order->phone_number = $request->get('phone_number');
         $order->sum_price = $request->get('sum_price');
         $order->sum_purchase_price = $request->get('sum_purchase_price');
-        $order->ttn = 'test';
         $order->message = $request->get('message');
         $order->product = (string)$test;
+        $order->ttn = $request->get('ttn');
         $order->save();
 
-        return redirect('/orders')->with('success', 'Заказ отправлен');
+        return ['data' => $order];
     }
 
     /**
@@ -66,7 +77,12 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Orders::find($id);
+        $order->status = $request->get('status');
+        $order->ttn = $request->get('ttn');
+        $order->save();
+
+        return 'OK';
     }
 
     /**

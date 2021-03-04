@@ -1,33 +1,35 @@
 <template>
 <div><h1>Заказы</h1>
 	<br>
+	Комментарий
+	<input v-model="app.message" type="checkbox">
 		<div class="tablebox">
-	<div v-if="loading">Загрузка...</div>
 
+	<div v-if="loading">Загрузка...</div>
 	<table v-else class="tableOrder">
 		<thead>
 			<tr>
 			<th>ID</th>
 			<th>ФИО</th>
 			<th>Номер телефона</th>
-			<th>Комментарий</th>
+			<th v-if="app.message">Комментарий</th>
 			<th>ТТН</th>
 			<th>Cтатус</th>
-			<th>Статус доставки</th>
-			<th></th>
+			<th>Дроп цена</th>
+			<th>Цена</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="post in posts" :key="post.id">
-			<td>{{post.id}}</td>
-			<td>{{post.name}} {{post.surname}} {{post.middle_name}}</td>
-			<td>{{post.phone_number}}</td>
-			<td>{{post.message}}</td>
-			<td>{{post.ttn}}</td>
-			<td>{{post.status}}</td>
-			<td>Выключено</td>
-			<td><router-link tag="div" :to="'/orders/' + post.id">Посмотреть</router-link></td>
-			</tr>
+			<router-link tag="tr" v-for="post in posts" :key="post.id" :to="'/orders/' + post.id">
+				<td>{{post.id}}</td>
+				<td>{{post.surname}} {{post.name}} {{post.middle_name}}</td>
+				<td>{{post.phone_number}}</td>
+				<td v-if="app.message">{{post.message}}</td>
+				<td>{{post.ttn}}</td>
+				<td>{{post.status}}</td>
+				<td>{{post.sum_purchase_price}}₴</td>
+				<td>{{post.sum_price}}₴</td>
+			</router-link>
 		</tbody>
 	</table>
 </div>
@@ -45,6 +47,9 @@ export default {
 				name: '',
 				surname: ''
 			},
+			app:{
+				message: false,
+			},
 			post_id: '',
 			pagination: {},
 			edit: false,
@@ -54,7 +59,7 @@ export default {
 	},
 	mounted(){
 		this.getPosts();
-		//this.statusNp();
+		this.statusNp();
 	},
 	methods: {
 		getPosts(page_url){
@@ -67,20 +72,8 @@ export default {
 	        .finally(() => this.loading = false)
 		},
 		statusNp(){
-				axios({
-        		crossDomain: true,
-  				method: 'POST',
-  				url: 'http://bit.ly/2mTM3nY',
-  				headers: {
-        		  "content-type": "application/json",
-        		},
-        		processData: false,
-        		data: {}
-				})
-               .then(response => this.np = response)
-	           .catch(error => console.log(error))
-			
-		},
+			        
+		}
 	}
 }
 </script>

@@ -9,6 +9,7 @@ import Navbar from './components/parts/Navbar';
  Vue.use(VueRouter);
 
 
+
 const app = new Vue({
 	el: '#app',
 	render : h => h(App),
