@@ -1,0 +1,14 @@
+{
+    "generated::p0plm6vlC3u3YWz1": "api\/user",
+    "orders.index": "api\/orders",
+    "orders.store": "api\/orders",
+    "orders.show": "api\/orders\/{order}",
+    "orders.update": "api\/orders\/{order}",
+    "orders.destroy": "api\/orders\/{order}",
+    "product.index": "api\/product",
+    "product.store": "api\/product",
+    "product.show": "api\/product\/{product}",
+    "product.update": "api\/product\/{product}",
+    "product.destroy": "api\/product\/{product}",
+    "generated::nZafHbFl4Ersgrd0": "{fallbackPlaceholder}"
+}
